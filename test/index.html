@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+	<title></title>
+    <link rel="stylesheet" href="./css/style-1.1.0.source.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+	<script type="text/javascript" src="../src/numeric-1.0.0.source.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var obj = $("[name^=period-]").numeric({
+                    max: null,
+                    min: 1,
+                    theme: 2,
+                    onChange: function() {
+                        console.info(123);
+                    },
+                });
+                
+		});
+	</script>
+</head>
+<body>
+
+	<style type="text/css">
+		.text{
+			width: 30px;
+			margin: 10px;
+		}
+
+		.add a, .sub a {
+			text-decoration: none;
+		}
+	</style>
+
+	<table>
+		<tr>
+			<td><input class="text" type="text" name="period-1" id="period-1" value="0" max="5" min="2"></td>
+		</tr>
+		<tr>
+			<td><input class="text" type="text" name="period-2" id="period-2"></td>
+		</tr>
+		<tr>
+			<td><input class="text" type="text" name="period-3" id="period-3"></td>
+		</tr>
+	</table>
+</body>
+</html>
