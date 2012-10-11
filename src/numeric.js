@@ -1,26 +1,32 @@
 /**
- * 年限处理插件
+ * Numeric
  * 
- * useage:
+ * Numeric是一个jQuery插件，依赖于jQuery-1.4.4以上。
+ * 该插件使得input元素提供类似于Html5的类型为number的input元素的操作方式。
  * 
- *      $("[name^=period-]").numeric({
+ * Usage:
+ * 
+ *      $(":input").numeric({
  *             max: 10,
  *             min: 1
  *       });
+ * 
+ * Version: @VERSION
+ * Since: October 2012
+ * Date: @DATE 
  */
 
-(function($) {
+;(function($) {
 
     $.numeric = $.numeric || {};
 
-	// configure
+    // configure
 	$.numeric.defaults = {
-		step: 1,
 		max: null,
 		min: 1,
+        step: 1,
 		readonly: true,
-		theme: 1,
-        onChange: null
+		theme: 1
 	};
 
 	/**
@@ -38,14 +44,12 @@
 		}
 
 		// bind event
-        trigger.bind('change.numeric', conf.onChange);
-        
 		plus.bind('click.numeric', function() {
-			self.calc(conf.step);
+			self.calc(self.get('step'));
 		});
 
 		minus.bind('click.numeric', function() {
-			self.calc(-conf.step);
+			self.calc(-self.get('step'));
 		});
 
 		// some method
@@ -63,12 +67,15 @@
 					val = parseInt(trigger.val(), 10) || min || 0;
 
 				val += value;
+                
+                // debug
+                // console.log(min, max, val, value);
 
 				if ((min && val < min) || (max && val > max)) {
 					return;
 				}
 
-				trigger.val(val).trigger('change.numeric');
+				trigger.val(val).trigger('change');
 
 				self.render();
 			},
@@ -134,7 +141,7 @@
 		// 设置主题
 		self.setTheme(conf.theme);
 
-		// 
+		// 显示按钮效果处理
 		self.render();
 	}
 
@@ -142,9 +149,7 @@
 	$.fn.numeric = function(conf) {
 
 		var api = this.data('numeric');
-		if (api) {
-			return api;
-		}
+		if (api) {return api;}
 
 		conf = $.extend(true, {}, $.numeric.defaults, conf);
 

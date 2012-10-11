@@ -1,18 +1,30 @@
-# README for a newly created project.
+# Numeric插件说明
 
-There are a couple of things you should do first, before you can use all of Git's power:
+**Numeric**是一个jQuery插件，依赖于jQuery-1.4.4以上。该插件使得input元素提供类似于Html5的类型为number的input元素的操作方式。
 
-  * Add a remote to this project: in the Cloud9 IDE command line, you can execute the following commands
-    `git remote add [remote name] [remote url (eg. 'git@github.com:/ajaxorg/node_chat')]` [Enter]
-  * Create new files inside your project
-  * Add them to to Git by executing the following command
-    `git add [file1, file2, file3, ...]` [Enter]
-  * Create a commit which can be pushed to the remote you just added
-    `git commit -m 'added new files'` [Enter]
-  * Push the commit the remote
-    `git push [remote name] master` [Enter]
+---
 
-That's it! If this doesn't work for you, please visit the excellent resources from [Github.com](http://help.github.com) and the [Pro Git](http://http://progit.org/book/) book.
-If you can't find your answers there, feel free to ask us via Twitter (@cloud9ide), [mailing list](groups.google.com/group/cloud9-ide) or IRC (#cloud9ide on freenode).
+## Usage
+
+ **一般用法**
+
+    	$(':input').numeric();
+
+
+ **进阶使用**
+
+如果input元素提供max, min等属性元素的值会受到限制。
+
+		<input type="text" max="9" min="1" />
+
+		$(':input').numeric();
+
+## Configure
+ 
+* `max`: 全局最大值
+* `min`: 全局最小值
+* `step`: 步长
+* `theme`: 主题[1|2]
+* `readonly`: 是否只读
 
 Happy coding!
