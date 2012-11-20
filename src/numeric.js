@@ -25,7 +25,7 @@
 		max: null,
 		min: 1,
         step: 1,
-		readonly: true,
+		readonly: false,
 		theme: 1
 	};
 
@@ -51,6 +51,30 @@
 		minus.bind('click.numeric', function() {
 			self.calc(-self.get('step'));
 		});
+        
+        // limit input
+        fire.bind('change.limit', function() {
+            
+            var max = self.get('max'),
+                min = self.get('min'),
+                val = trigger.val();
+                
+            // 计算数值有效范围
+            if (isNaN(val) || parseInt(val) != val) {
+                
+                trigger.val(min | 1);
+                
+            } else if (max && val > max) {
+                
+                trigger.val(max);
+                
+            } else if (min && val < min) {
+                
+                trigger.val(min);
+            }
+            
+            self.render();
+        });
 
 		// some method
 		$.extend(self, {
